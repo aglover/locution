@@ -3,7 +3,7 @@
     <%= form.label :word %><br>
     <%= form.text_field :word %>
 
-      <% word.errors.full_messages_for(:word).each do |message| %>
+    <% word.errors.full_messages_for(:word).each do |message| %>
       <div><%= message %></div>
     <% end %>
 
@@ -14,6 +14,15 @@
     <%= form.text_field :part_of_speech %>
 
     <% word.errors.full_messages_for(:part_of_speech).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :definition %><br>
+    <%= form.text_area :definition %>
+
+    <% word.errors.full_messages_for(:definition).each do |message| %>
       <div><%= message %></div>
     <% end %>
   </div>

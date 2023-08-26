@@ -12,7 +12,11 @@ class WordsController < ApplicationController
   end
 
   def create
-    @word = Word.new(word_params)
+    @word = Word.new(word: word_params[:word],
+                     part_of_speech: word_params[:part_of_speech],
+                     definitions_attributes: [
+                       { definition: word_params[:definition] },
+                     ])
 
     if @word.save
       redirect_to @word
@@ -42,10 +46,13 @@ class WordsController < ApplicationController
     redirect_to root_path, status: :see_other
   end
 
-
   private
-    def word_params
-      params.require(:word).permit(:word, :part_of_speech)
-    end
 
+  def word_params
+    params.require(:word).permit(
+      :word,
+      :part_of_speech,
+      :definition,
+    )
+  end
 end
