@@ -11,3 +11,6 @@ First time: `docker compose up -d` and then use `start` and to stop, use `docker
 
 To fix PG lib errors: https://stackoverflow.com/questions/6209797/cant-find-the-postgresql-client-library-libpq
 
+Connect to Postgres
+
+` psql postgresql://postgres:locution@127.0.0.1:5432/locution`
