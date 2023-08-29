@@ -2,7 +2,13 @@ POST http://127.0.0.1:3000/api/words HTTP/1.1
 content-type: application/json
 
 {
-  "word": "foo2",
-  "part_of_speech": "bar2"
+  "word": "borak",
+  "part_of_speech": "n",
+
+    "definitions": [
+      {
+        "definition": "ridicule"
+      }
+    ]
   
 }
