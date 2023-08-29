@@ -2,8 +2,6 @@ class Api::WordsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
-    # render json: Word.all.to_json(:include => :definitions)
-    # render json: Word.preload(:definitions).to_json(:include => :definitions)
     render json: Word.order(:id).preload(:definitions).page(params[:page]).to_json(:include => :definitions)
   end
 
@@ -25,10 +23,6 @@ class Api::WordsController < ApplicationController
   end
 
   def show
-    render json: Word.where(id: params[:id]).load.includes(:definitions).first.to_json(:include => :definitions)
+    render json: Word.where(id: params[:id]).includes(:definitions).first.to_json(:include => :definitions)
   end
-
-  #   def word_params
-  #     params.permit(:word, :part_of_speech, :definitions, :definition)
-  #   end
 end
