@@ -5,4 +5,6 @@ class Word < ApplicationRecord
 
   validates :word, presence: true
   validates :part_of_speech, presence: true, length: { minimum: 1 }
+
+  paginates_per 50
 end

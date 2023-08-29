@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   # get "/words", to: "words#index"
   # get "/words/:id", to: "words#show"
   resources :words do
+    get "/page/:page", action: :index, on: :collection
     resources :definitions
   end
 

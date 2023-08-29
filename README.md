@@ -13,9 +13,14 @@ To fix PG lib errors: https://stackoverflow.com/questions/6209797/cant-find-the-
 
 Connect to Postgres
 
-` psql postgresql://postgres:locution@127.0.0.1:5432/locution`
+`psql postgresql://postgres:locution@127.0.0.1:5432/locution`
 
 
 ReadySet running on port 5433. allow full materialization set to false by default. 
 
 If you want to test w/it on, `--allow-full-materialization`
+
+
+Be sure to run `seed_database.rb` in the `etc` directory to write a bunch of data into the `words` and `definition` tables. 
+
+Pagination done via https://betterprogramming.pub/pagination-in-rails-b3a9ba25b3c3

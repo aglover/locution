@@ -45,7 +45,8 @@ gem "bootsnap", require: false
 # added by Andy
 gem "dotenv-rails"
 gem "erb-formatter"
-
+gem "rest-client"
+gem "kaminari"
 # Use Sass to process CSS
 # gem "sassc-rails"
 
