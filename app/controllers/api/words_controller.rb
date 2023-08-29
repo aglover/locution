@@ -3,7 +3,8 @@ class Api::WordsController < ApplicationController
 
   def index
     # render json: Word.all.to_json(:include => :definitions)
-    render json: Word.preload(:definitions).to_json(:include => :definitions)
+    # render json: Word.preload(:definitions).to_json(:include => :definitions)
+    render json: Word.order(:id).preload(:definitions).page(params[:page]).to_json(:include => :definitions)
   end
 
   def create
