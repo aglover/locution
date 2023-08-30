@@ -52,7 +52,7 @@ class WordsController < ApplicationController
     params.require(:word).permit(
       :word,
       :part_of_speech,
-      :definition,
+      definition_attributes: [:definition]
     )
   end
 end
