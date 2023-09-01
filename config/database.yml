@@ -17,18 +17,23 @@
 default: &default
   adapter: postgresql
   encoding: unicode
+  database: <%= ENV['POSTGRES_DB'] %>
   username: <%= ENV['POSTGRES_USER'] %>
   password: <%= ENV['POSTGRES_PASSWORD'] %>
   timeout: 5000
   host: <%= ENV['POSTGRES_HOST'] %>
-  # For details on connection pooling, see Rails configuration guide
-  # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  port: 5433
 
 development:
-  <<: *default
-  database: <%= ENV['POSTGRES_DB'] %>
+  primary:
+    <<: *default
+    port: 5432
+
+  primary_replica:
+    <<: *default
+    port: 5433
+    replica: true
+    database_tasks: false
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
