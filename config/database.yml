@@ -31,7 +31,7 @@ development:
 
   primary_replica:
     <<: *default
-    host: "locutioncache.LqAFeswyA5Cb.cache.dev"
+    host: <%= ENV['READY_SET_HOST'] %>
     port: 5433
     replica: true
     database_tasks: false
