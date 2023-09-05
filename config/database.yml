@@ -25,14 +25,17 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
-  <<: *default
-  port: 5432
+  primary:
+    <<: *default
+    port: 5432
 
-  # primary_replica:
-  #   <<: *default
-  #   port: 5433
-  #   replica: true
-  #   database_tasks: false
+  primary_replica:
+    <<: *default
+    host: "locutioncache.LqAFeswyA5Cb.cache.dev"
+    port: 5433
+    replica: true
+    database_tasks: false
+    
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
