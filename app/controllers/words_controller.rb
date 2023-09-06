@@ -4,7 +4,16 @@ class WordsController < ApplicationController
   end
 
   def show
-    @word = Word.find(params[:id])
+    search_by = params[:id]
+
+    if (search_by.to_i > 0)
+      @word = Word.find(search_by)
+    else
+      @word = Word.where(word: search_by.capitalize).includes(:definitions).first
+      if @word.nil? #try one more time w/o capitalization (this is a data error on my part)
+        @word = Word.where(word: search_by).includes(:definitions).first
+      end
+    end
   end
 
   def new
