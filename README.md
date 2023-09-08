@@ -19,6 +19,29 @@ Helpful links
 * Rails uses a Ruby gem to connect to Postgres and this gem requires native code. To fix PG lib errors on OSX, see [SO](https://stackoverflow.com/questions/6209797/cant-find-the-postgresql-client-library-libpq)
 * Pagination done via [kaminari](https://betterprogramming.pub/pagination-in-rails-b3a9ba25b3c3)
 
+## Generic setup regardless of database
+
+Once you've configured a database -- locally via Docker or via RDS (either Postgres or Aurora Postgres), you'll need to create a `.env` file with the following keys:
+
+```
+POSTGRES_USER='some_user'
+POSTGRES_PASSWORD='some_password'
+POSTGRES_HOST='a_url'
+POSTGRES_DB='locution'
+POSTGRES_TEST_DB='locution'
+READY_SET_HOST='another_url'
+```
+
+You'll see that the `database.yml` is seeking the values of these keys to configure things. You'll first need to run a migration to set up the database structure: `bin/rails db:migrate`. 
+
+Go to `http://localhost:3000/words/` and you should see a simple blank page with a link to create a new word. If you've gotten this far, then things are working. If you'd like to seed the database with a dictionary's worth of words you can run the following command from the root of this project:
+
+```
+psql postgresql://user:password@database_url:5432/database < etc/all-words-data-only-export.sql
+```
+
+Depending on your database and the network between you and it, this might take awhile. Like hours. 
+
 ## Postgres docker setup
 
 First time: `docker compose up -d` and then use `start` and to stop, use `docker compose stop` and to start over (remove things) use `down`. 
