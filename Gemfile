@@ -47,6 +47,9 @@ gem "dotenv-rails"
 gem "erb-formatter"
 gem "rest-client"
 gem "kaminari"
+gem "rufo"
+gem "yabeda-rails"
+gem "yabeda-prometheus"
 # Use Sass to process CSS
 # gem "sassc-rails"
 
