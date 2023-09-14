@@ -63,3 +63,13 @@ SELECT "words".* FROM "words" WHERE ("words"."id" = $1) ORDER BY "words"."id" AS
 ```
 
 This is a simple application and it turns out that almost all functionality of using dictionary refers to these queries. Because full materialization is off by default, you'll see a few queries that load _everything_ such as `SELECT "words".* FROM "words" ORDER BY "words"."id" ASC` or even `SELECT count(*) FROM "words"` that are marked as `unsupported`. 
+
+## Prometheus metrics
+
+There's a `metrics/` endpoint associated with this application that emits Prometheus style metrics. You can find a corresponding `prometheus.yml` file in the `etc/` directory that configures Prometheus. To run Prometheus, type:
+
+```
+ docker run -p 9090:9090 -v ./etc/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus
+```
+
+Note, the configuration assumes that Rails is running in a non-containerized environment; hence, you'll note that Prometheus is configured to hit `host.docker.internal:3000/metrics`. 
