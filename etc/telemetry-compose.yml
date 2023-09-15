@@ -16,8 +16,16 @@ services:
     environment:
       GF_INSTALL_PLUGINS: 'grafana-clock-panel,grafana-simple-json-datasource'
     volumes:
-      - grafana:/var/lib/grafana
+      - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+      - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
+      # - grafana:/var/lib/grafana
       # - ./grafana/provisioning/:/etc/grafana/provisioning/
+      # - ./grafana/dashboard.yml:/etc/grafana/provisioning/dashboards/main.yaml
+      # - ./grafana/dashboards:/var/lib/grafana/dashboards
+      - ./grafana/grafana.ini:/etc/grafana/grafana.ini
+
+    expose:
+      - 4000
     ports:
       - "4000:4000"
     depends_on:
