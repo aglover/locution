@@ -18,7 +18,7 @@ Helpful links
 * [Postgres docker image](https://hub.docker.com/_/postgres)
 * Rails uses a Ruby gem to connect to Postgres and this gem requires native code. To fix PG lib errors on OSX, see [SO](https://stackoverflow.com/questions/6209797/cant-find-the-postgresql-client-library-libpq)
 * Pagination done via [kaminari](https://betterprogramming.pub/pagination-in-rails-b3a9ba25b3c3)
-* Having trouble installing Ruby 3.2.x on OSX? Using Homebrew too? Ensure you have OpenSSL installed and try running `rvm install 3.2.x --with-openssl-dir=/opt/homebrew/opt/openssl@1.1`
+* Having trouble installing Ruby 3.2.x on OSX? Using Homebrew too? Ensure you have [OpenSSL installed and try running](https://github.com/rvm/rvm/issues/5261) `rvm install 3.2.x --with-openssl-dir=/opt/homebrew/opt/openssl@1.1`
 
 ## Generic setup regardless of database
 
