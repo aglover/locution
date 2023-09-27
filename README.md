@@ -21,16 +21,26 @@ Helpful links
 * Having trouble installing Ruby 3.2.x on OSX? Using Homebrew too? Ensure you have [OpenSSL installed and try running](https://github.com/rvm/rvm/issues/5261) `rvm install 3.2.x --with-openssl-dir=/opt/homebrew/opt/openssl@1.1`
 
 ## High-level steps to get set up 
+
+To successfully run this application, there are a few prerequisites: 
+
+1. Ruby 3.2.2 is installed. 
+2. Docker is installed.
+3. This application works with [PostgreSQL](https://www.postgresql.org/). The application provides a Postgres `docker-compose.yml` file; however, you'll still need the `psql` client to seed the database, for instance. Postgres doesn't have to be installed locally; nevertheless, you'll need to configure this application to communicate with whatever instance of Postgres you have. You'll need to provide connection information in a `.env` file, which you'll create. 
+
+If those prerequisites are available, then follow these steps: 
+
 1. Clone this repository. 
-2. You'll need access to a Postgres instance either locally or remotely in AWS, for example. Either way, just like any other application, you will need to ensure this Rails application can communicate w/your desired Postgres instance. There is an included `docker-compose.yml` file that will fire up a Postgres container. [See below for more details](#postgres-docker-setup).  
+2. You'll need access to a Postgres instance either locally or remotely in AWS, for example. Either way, just like any other application, you will need to ensure this Rails application can communicate w/your desired Postgres instance. There is an included `docker-compose.yml` file that will fire up a Postgres container. [See below for more details](#postgres-docker-setup). Make sure the database is running before the next steps.
 3. Once you have a database available, you'll need to create a `.env` file that contains specific keys and values. [See below for specific details](#generic-setup-regardless-of-database). 
-4. Run a database migration `bin/rails db:migrate`. 
-5. Start the application via `bin/rails server`. 
-6. If you didn't change the port, go to `http://localhost:3000/words/` and you should see an underwhelming blank-ish screen where you can elect to create a word. 
-7. You can seed the database via the Postgres client, `psql` with a sample `.sql` file found in the `etc/` directory called `all-words-data-only-export.sql`. [See below for more details](#generic-setup-regardless-of-database).
-8. Refresh `http://localhost:3000/words/` and you should see some words. 
-9. You now have a simple dictionary-ish application. You can see words in alphabetical order and you can search for words using the format (i.e. an HTTP `GET`): `http://localhost:3000/words/<your word>`.
-10. Out-of-the-box, this application does bundle a [ReadySet Docker compose file](#readyset). It's up to you if you want to use it or can follow our [Quickstart directions](https://docs.readyset.io/deploy/deploy-with-docker). Regardless on how you fire up ReadySet, you'll need to manually configure it. Please see [ReadySet's RoR documentation](https://docs.readyset.io/connect/connect-an-application-via-an-orm/ruby-on-rails-with-readyset) for instructions.  
+4. Make sure you are in the root directory of this project and then run `bundle install`. Note, the Postgres Ruby Gem requires some native code to successfully compile. This might mean that you'll need to install some [native libraries](https://stackoverflow.com/questions/6209797/cant-find-the-postgresql-client-library-libpq) depending on your OS. 
+5. Run a database migration `bin/rails db:migrate`. 
+6. Start the application via `bin/rails server`. 
+7. If you didn't change the port, go to `http://localhost:3000/words/` and you should see an underwhelming blank-ish screen where you can elect to create a word. 
+8. You can seed the database via the Postgres client, `psql` with a sample `.sql` file found in the `etc/` directory called `all-words-data-only-export.sql`. [See below for more details](#generic-setup-regardless-of-database).
+9. Refresh `http://localhost:3000/words/` and you should see some words. 
+10. You now have a simple dictionary-ish application. You can see words in alphabetical order and you can search for words using the format (i.e. an HTTP `GET`): `http://localhost:3000/words/<your word>`.
+11. Out-of-the-box, this application does bundle a [ReadySet Docker compose file](#readyset). It's up to you if you want to use it or can follow our [Quickstart directions](https://docs.readyset.io/deploy/deploy-with-docker). Regardless on how you fire up ReadySet, you'll need to manually configure it. Please see [ReadySet's RoR documentation](https://docs.readyset.io/connect/connect-an-application-via-an-orm/ruby-on-rails-with-readyset) for instructions.  
 
 ## Generic setup regardless of database
 
