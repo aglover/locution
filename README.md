@@ -23,7 +23,7 @@ If those prerequisites are available, then follow these steps:
 8. You can seed the database via the Postgres client, `psql` with a sample `.sql` file found in the `etc/` directory called `all-words-data-only-export.sql`. [See below for more details](#generic-setup-regardless-of-database).
 9. Refresh `http://localhost:3000/words/` and you should see some words. 
 10. You now have a simple dictionary-ish application. You can see words in alphabetical order and you can search for words using the format (i.e. an HTTP `GET`): `http://localhost:3000/words/<your word>`.
-11. Out-of-the-box, this application does bundle a [ReadySet Docker compose file](#readyset). It's up to you if you want to use it or can follow our [Quickstart directions](https://docs.readyset.io/deploy/deploy-with-docker). Regardless on how you fire up ReadySet, you'll need to manually configure it. Please see [ReadySet's RoR documentation](https://docs.readyset.io/connect/connect-an-application-via-an-orm/ruby-on-rails-with-readyset) for instructions.  
+11. Out-of-the-box, this application does bundle a [ReadySet Docker compose file](#readyset). It's up to you if you want to use it or can follow our [install directions](https://docs.readyset.io/deploy/deploy-with-docker). Regardless on how you fire up ReadySet, you'll need to manually configure it. Please see [ReadySet's RoR documentation](https://docs.readyset.io/connect/connect-an-application-via-an-orm/ruby-on-rails-with-readyset) for instructions.  
 
 ## Generic setup regardless of database
 
