@@ -25,9 +25,19 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
-  # primary:
+    # primary:
     <<: *default
     port: 5432
+    # you can find this via ActiveRecord::Base.configurations
+
+readyset:
+  adapter: postgresql
+  name: "readyset development cache" 
+  host: <%= ENV['READY_SET_HOST'] %>
+  port: 5432
+  database: <%= ENV['POSTGRES_DB'] %>
+  username: <%= ENV['POSTGRES_USER'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
 
   # primary_replica:
   #   <<: *default

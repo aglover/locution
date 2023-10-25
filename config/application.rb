@@ -1,4 +1,5 @@
 require_relative "boot"
+require_relative "readyset_cache"
 
 require "rails/all"
 
@@ -10,6 +11,9 @@ module Locution
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
+
+    # https://api.rubyonrails.org/classes/ActiveRecord/QueryLogs.html
+    config.active_record.query_log_tags_enabled = true
 
     # Configuration for the application, engines, and railties goes here.
     #

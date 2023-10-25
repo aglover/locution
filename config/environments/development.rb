@@ -25,12 +25,25 @@ Rails.application.configure do
 
     config.cache_store = :memory_store
     config.public_file_server.headers = {
-      "Cache-Control" => "public, max-age=#{2.days.to_i}"
+      "Cache-Control" => "public, max-age=#{2.days.to_i}",
     }
   else
-    config.action_controller.perform_caching = false
+    config.action_controller.perform_caching = true
 
-    config.cache_store = :null_store
+    # config.cache_store = :null_store
+    # https://api.rubyonrails.org/classes/ActiveSupport/Cache/Store.html
+    config.cache_store = ReadysetCache.new
+    # (
+    #   {
+    #     url: ENV["READY_SET_HOST"],
+    #     port: 5433,
+    #     database: ENV["POSTGRES_DB"],
+    #     username: ENV["POSTGRES_USER"],
+    #     password: ENV["POSTGRES_PASSWORD"],
+    #     thing: :readyset_dev,
+    #   }
+    # )
+    # config.active_record.cache_versioning = false
   end
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
@@ -67,4 +80,8 @@ Rails.application.configure do
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
+
+  # config.active_record.database_selector = { delay: 2.seconds }
+  # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
+  # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
 end
