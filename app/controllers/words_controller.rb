@@ -5,7 +5,7 @@ class WordsController < ApplicationController
 
   def show
     search_by = params[:id]
-
+    # this approach assumes the cache is made so what's the value?
     Rails.cache.fetch("words-query") do
       if (search_by.to_i > 0)
         @word = Word.find(search_by)
